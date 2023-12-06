@@ -22,8 +22,16 @@ app.post('/new',(request,response)=>{
     response.send("Record saved")
 })
 
+app.get('/view',async(request,response)=>{
+    var data = await studentmodel.find();
+    response.send(data)
+})
 
-
+app.put('/edit/:id',async(request,response)=>{
+    let id = request.params.id;
+    await studentmodel.findByIdAndUpdate(id,request.body)
+    response.send("Data Updated")
+})
 
 
 //4.Assign Port
